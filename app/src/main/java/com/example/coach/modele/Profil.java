@@ -1,10 +1,12 @@
 package com.example.coach.modele;
 
+import java.io.Serializable;
+
 /**
  * Classe métier Profil
  * contient les informations du profil
  */
-public class Profil {
+public class Profil implements Serializable {
 
     // constantes
     private static final Integer minFemme = 15; // maigre si en dessous
@@ -12,10 +14,10 @@ public class Profil {
     private static final Integer minHomme = 10; // maigre si en dessous
     private static final Integer maxHomme = 25; // gros si au dessus
 
-    private int poids;
-    private int taille;
-    private int age;
-    private int sexe;
+    private Integer poids;
+    private Integer taille;
+    private Integer age;
+    private Integer sexe;
     private float img = 0;
     private String message = "";
 
@@ -26,26 +28,26 @@ public class Profil {
      * @param age
      * @param sexe 1 pour homme, 0 pour femme
      */
-    public Profil(int poids, int taille, int age, int sexe) {
+    public Profil(Integer poids, Integer taille, Integer age, Integer sexe) {
         this.poids = poids;
         this.taille = taille;
         this.age = age;
         this.sexe = sexe;
     }
 
-    public int getPoids() {
+    public Integer getPoids() {
         return poids;
     }
 
-    public int getTaille() {
+    public Integer getTaille() {
         return taille;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public int getSexe() {
+    public Integer getSexe() {
         return sexe;
     }
 
