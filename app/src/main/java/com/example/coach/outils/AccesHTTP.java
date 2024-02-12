@@ -8,8 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 
 /**
@@ -54,7 +52,6 @@ public class AccesHTTP extends AsyncTask<String, Integer, Long> {
 	 * @param urls contient l'adresse du serveur dans la case 0 de urls
 	 * @return null
 	 */
-
 	@Override
 	protected Long doInBackground(String... urls) {
 

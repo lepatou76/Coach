@@ -3,10 +3,8 @@ package com.example.coach.modele;
 import android.util.Log;
 
 import com.example.coach.outils.MesOutils;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +12,7 @@ import java.util.Date;
  * Classe métier Profil
  * contient les informations du profil
  */
-public class Profil implements Serializable {
+public class Profil implements Serializable, Comparable {
 
     // constantes
     private static final Integer minFemme = 15; // maigre si en dessous
@@ -26,6 +24,7 @@ public class Profil implements Serializable {
     private Integer taille;
     private Integer age;
     private Integer sexe;
+
     private Date dateMesure;
     private float img = 0;
     private String message = "";
@@ -60,7 +59,10 @@ public class Profil implements Serializable {
     public Integer getSexe() {
         return sexe;
     }
-    public Date getDateMesure() {return dateMesure; }
+
+    public Date getDateMesure() {
+        return dateMesure;
+    }
 
     /**
      * Retourne img après l'avoir calculé s'il est vide
@@ -68,8 +70,8 @@ public class Profil implements Serializable {
      */
     public float getImg() {
         if(img == 0){
-            float tailleM = ((float)taille)/100;
-            img = (float) ((1.2 * poids/(tailleM * tailleM)) + (0.23 * age) - (10.83 * sexe) -5.4);
+            float tailleCm = ((float)taille)/100;
+            img = (float)((1.2 * poids/(tailleCm*tailleCm)) + (0.23 * age) - (10.83 * sexe) - 5.4);
         }
         return img;
     }
@@ -79,8 +81,7 @@ public class Profil implements Serializable {
      * @return message "normal", "trop faible", "trop élevé"
      */
     public String getMessage() {
-
-        if(message.contains("")){
+        if(message.equals("")){
             message = "normal";
             Integer min = minFemme, max = maxFemme;
             if(sexe == 1){
@@ -103,7 +104,7 @@ public class Profil implements Serializable {
      * Convertit le contenu du profil en JSONObject
      * @return profil au format JSONObject
      */
-    public JSONObject convertToJSONobject() {
+    public JSONObject convertToJSONObject(){
         JSONObject jsonProfil = new JSONObject();
         try {
             jsonProfil.put("datemesure", MesOutils.convertDateToString(dateMesure));
@@ -117,4 +118,13 @@ public class Profil implements Serializable {
         return jsonProfil;
     }
 
+    /**
+     * Comparaison des profils sur dateMesure
+     * @param o
+     * @return le résultat de la comparaison
+     */
+    @Override
+    public int compareTo(Object o) {
+        return dateMesure.compareTo(((Profil)o).getDateMesure());
+    }
 }

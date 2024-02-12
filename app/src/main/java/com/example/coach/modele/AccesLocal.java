@@ -1,15 +1,12 @@
 package com.example.coach.modele;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.example.coach.outils.MesOutils;
 import com.example.coach.outils.MySQLiteOpenHelper;
-
 import java.util.Date;
 
 /**
@@ -22,6 +19,7 @@ public class AccesLocal {
     private MySQLiteOpenHelper accesBD;
     private static AccesLocal instance;
     private SQLiteDatabase bd;
+
     /**
      * Constructeur : création du lien avec la bdd au format SQLite
      * @param context
@@ -81,4 +79,5 @@ public class AccesLocal {
         bd.close();
         return profil;
     }
+
 }
